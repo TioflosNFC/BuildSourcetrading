@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Source Trading — Quality Building Materials, Addis Ababa</title>
+<meta name="description" content="Build Source Trading supplies gypsum board, ceiling systems, partitions, soundproofing, waterproofing, aluminum & Armstrong ceilings, and cement board in Addis Ababa, Ethiopia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1B4D8C;
+    --blue-dark:#123A6B;
+    --green:#5BA82E;
+    --green-dark:#447F22;
+    --ink:#1A2433;
+    --paper:#FAFAF8;
+    --panel:#EEF2F7;
+    --line:#DCE3ED;
+    --white:#FFFFFF;
+    --radius:10px;
+    --shadow: 0 8px 24px rgba(26,36,51,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.font-display{font-family:'Sora',sans-serif;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+  :focus-visible{outline:3px solid var(--green); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+
+  /* ===== Layout shell ===== */
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50; background:rgba(250,250,248,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-weight:800; font-size:1.05rem; line-height:1.1; color:var(--blue);}
+  .brand-tag{font-size:0.68rem; letter-spacing:0.06em; color:var(--green-dark); font-weight:600; text-transform:uppercase;}
+  nav{display:flex; gap:6px;}
+  nav button{
+    background:none; border:none; padding:10px 16px; font-size:0.92rem; font-weight:600; color:var(--ink);
+    border-radius:8px; transition:background .15s, color .15s;
+  }
+  nav button:hover{background:var(--panel);}
+  nav button.active{color:var(--blue); background:var(--panel);}
+  .nav-toggle{display:none; background:none; border:none; padding:8px;}
+  .nav-toggle svg{width:26px; height:26px;}
+
+  @media (max-width:880px){
+    nav{position:fixed; top:76px; left:0; right:0; background:var(--white); flex-direction:column;
+        padding:10px; box-shadow:var(--shadow); display:none; border-bottom:1px solid var(--line);}
+    nav.open{display:flex;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:8px;
+    font-weight:700; font-size:0.95rem; border:2px solid transparent; transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--blue); color:var(--white);}
+  .btn-primary:hover{box-shadow:0 10px 22px rgba(27,77,140,0.30);}
+  .btn-accent{background:var(--green); color:var(--white);}
+  .btn-accent:hover{box-shadow:0 10px 22px rgba(91,168,46,0.30);}
+  .btn-ghost{background:transparent; color:var(--blue); border-color:var(--blue);}
+  .btn-ghost:hover{background:var(--blue); color:var(--white);}
+  .btn-sm{padding:9px 16px; font-size:0.85rem;}
+
+  /* ===== Hero (layered panel motif) ===== */
+  .hero{position:relative; overflow:hidden; background:linear-gradient(180deg, var(--blue-dark) 0%, var(--blue) 55%, var(--blue) 100%);}
+  .hero .container{position:relative; padding:88px 24px 120px; z-index:2;}
+  .hero-eyebrow{color:#BFE3A6; font-weight:700; letter-spacing:.08em; font-size:0.8rem; text-transform:uppercase; margin-bottom:18px;}
+  .hero h1{color:#fff; font-size:clamp(2.1rem,5vw,3.4rem); line-height:1.08; margin:0 0 18px; max-width:680px;}
+  .hero h1 span{color:#A9D98C;}
+  .hero p{color:#D7E3F4; font-size:1.1rem; max-width:560px; margin:0 0 34px; line-height:1.6;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-slabs{position:absolute; inset:0; z-index:1; opacity:0.5;}
+  .trust-strip{background:var(--white); border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0;}
+  .trust-item{padding:22px 16px; text-align:center; border-right:1px solid var(--line);}
+  .trust-item:last-child{border-right:none;}
+  .trust-item .num{font-family:'Sora'; font-weight:800; font-size:1.6rem; color:var(--blue);}
+  .trust-item .lbl{font-size:0.82rem; color:#5A6678; font-weight:600;}
+  @media (max-width:700px){.trust-grid{grid-template-columns:1fr;} .trust-item{border-right:none; border-bottom:1px solid var(--line);} .trust-item:last-child{border-bottom:none;}}
+
+  /* ===== Sections ===== */
+  section{padding:80px 0;}
+  .section-tight{padding:60px 0;}
+  .eyebrow{color:var(--green-dark); font-weight:700; letter-spacing:.07em; font-size:0.78rem; text-transform:uppercase; margin-bottom:10px;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0 0 12px; color:var(--ink);}
+  .section-head p{color:#54607A; font-size:1.02rem; line-height:1.6; margin:0;}
+  .bg-panel{background:var(--panel);}
+
+  /* category grid */
+  .cat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:980px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.cat-grid{grid-template-columns:1fr;}}
+  .cat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:26px 20px;
+    transition:transform .18s, box-shadow .18s; cursor:pointer;
+  }
+  .cat-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--blue);}
+  .cat-icon{width:46px; height:46px; margin-bottom:16px;}
+  .cat-card h3{font-size:1.0rem; margin:0 0 6px;}
+  .cat-card p{font-size:0.85rem; color:#5A6678; margin:0; line-height:1.5;}
+
+  /* product grid */
+  .filter-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px;}
+  .chip{
+    border:1.5px solid var(--line); background:var(--white); padding:9px 16px; border-radius:999px;
+    font-size:0.85rem; font-weight:600; color:#54607A;
+  }
+  .chip.active{background:var(--blue); color:#fff; border-color:var(--blue);}
+  .prod-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:920px){.prod-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:580px){.prod-grid{grid-template-columns:1fr;}}
+  .prod-card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:box-shadow .18s, transform .18s;}
+  .prod-card:hover{box-shadow:var(--shadow); transform:translateY(-3px);}
+  .prod-thumb{aspect-ratio:4/3; background:var(--panel); display:flex; align-items:center; justify-content:center;}
+  .prod-thumb svg{width:58%; height:58%;}
+  .prod-body{padding:18px 18px 20px;}
+  .prod-cat{font-size:0.7rem; font-weight:700; color:var(--green-dark); text-transform:uppercase; letter-spacing:.05em;}
+  .prod-body h4{margin:6px 0 6px; font-size:1.0rem;}
+  .prod-body p{margin:0; font-size:0.85rem; color:#5A6678; line-height:1.5;}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .value-list{list-style:none; margin:0; padding:0; display:grid; gap:14px;}
+  .value-list li{display:flex; gap:12px; align-items:flex-start; font-size:0.97rem; color:#3A4456;}
+  .value-list svg{flex-shrink:0; width:22px; height:22px; color:var(--green);}
+  .stat-card{background:var(--blue); color:#fff; border-radius:var(--radius); padding:30px; text-align:center;}
+  .stat-card .num{font-family:'Sora'; font-weight:800; font-size:2.4rem;}
+  .stat-card .lbl{font-size:0.85rem; opacity:.85;}
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+
+  /* gallery */
+  .gal-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:880px){.gal-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.gal-grid{grid-template-columns:1fr;}}
+  .gal-item{aspect-ratio:4/3; border-radius:var(--radius); background:var(--panel); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--line);}
+  .gal-item svg{width:50%; height:50%;}
+  .gal-tag{position:absolute; margin-top:-34px; margin-left:10px; background:rgba(255,255,255,.92); font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:6px; color:var(--blue);}
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:880px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:24px; display:flex; gap:16px; align-items:flex-start; margin-bottom:14px;}
+  .contact-card svg{width:26px; height:26px; color:var(--blue); flex-shrink:0;}
+  .contact-card h4{margin:0 0 4px; font-size:0.95rem;}
+  .contact-card p{margin:0; font-size:0.9rem; color:#5A6678;}
+  .contact-card a.link{color:var(--blue); font-weight:600;}
+  .map-box{aspect-ratio:16/10; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:#5A6678; font-size:0.85rem; margin-top:18px; flex-direction:column; gap:8px;}
+  .form-field{margin-bottom:16px;}
+  .form-field label{display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px;}
+  .form-field input, .form-field textarea, .form-field select{
+    width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:8px; font-size:0.92rem; font-family:inherit; background:var(--white);
+  }
+  .form-field input:focus, .form-field textarea:focus{border-color:var(--blue);}
+  .qr-box{width:120px; height:120px; background:#fff; border:1px solid var(--line); border-radius:8px; display:flex; align-items:center; justify-content:center;}
+
+  /* footer */
+  footer{background:var(--blue-dark); color:#C9D8EE; padding:50px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:32px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr;}}
+  footer h4{color:#fff; font-size:0.95rem; margin:0 0 14px;}
+  footer ul{list-style:none; padding:0; margin:0; display:grid; gap:10px; font-size:0.88rem;}
+  footer p{font-size:0.88rem; line-height:1.6; max-width:340px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12); padding-top:20px; font-size:0.8rem; opacity:.75; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* sticky contact rail */
+  .rail{position:fixed; right:18px; bottom:18px; z-index:60; display:flex; flex-direction:column; gap:10px;}
+  .rail a{
+    width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25); color:#fff; transition:transform .15s;
+  }
+  .rail a:hover{transform:scale(1.08);}
+  .rail a svg{width:24px; height:24px;}
+  .rail-wa{background:#25D366;} .rail-tg{background:#229ED9;} .rail-call{background:var(--blue);}
+
+  /* admin demo */
+  .admin-shell{display:grid; grid-template-columns:230px 1fr; min-height:560px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--white);}
+  @media (max-width:760px){.admin-shell{grid-template-columns:1fr; min-height:auto;}}
+  .admin-side{background:var(--blue-dark); color:#fff; padding:20px 14px;}
+  .admin-side .a-logo{font-weight:800; font-size:0.95rem; margin-bottom:24px; padding:0 8px;}
+  .admin-side button{display:block; width:100%; text-align:left; background:none; border:none; color:#C9D8EE; padding:11px 12px; border-radius:8px; font-size:0.88rem; margin-bottom:2px;}
+  .admin-side button.active{background:rgba(255,255,255,0.12); color:#fff; font-weight:600;}
+  .admin-main{padding:26px;}
+  .admin-main h3{margin:0 0 4px;}
+  .admin-main .sub{color:#5A6678; font-size:0.88rem; margin-bottom:24px;}
+  .admin-table{width:100%; border-collapse:collapse; font-size:0.86rem;}
+  .admin-table th{text-align:left; color:#5A6678; font-weight:600; padding:10px 12px; border-bottom:1px solid var(--line);}
+  .admin-table td{padding:10px 12px; border-bottom:1px solid var(--line);}
+  .badge{font-size:0.72rem; font-weight:700; padding:3px 9px; border-radius:999px;}
+  .badge-on{background:#E3F3D8; color:var(--green-dark);}
+  .badge-off{background:#F2E2E2; color:#A33;}
+  .kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px;}
+  @media (max-width:700px){.kpi-row{grid-template-columns:repeat(2,1fr);}}
+  .kpi{background:var(--panel); border-radius:8px; padding:16px;}
+  .kpi .n{font-family:'Sora'; font-weight:800; font-size:1.5rem; color:var(--blue);}
+  .kpi .l{font-size:0.78rem; color:#5A6678;}
+  .admin-note{background:#FFF7E0; border:1px solid #F0DBA0; border-radius:8px; padding:14px 16px; font-size:0.85rem; color:#7A5E12; margin-bottom:20px;}
+
+  .toast{position:fixed; bottom:90px; right:18px; background:var(--ink); color:#fff; padding:14px 20px; border-radius:8px; font-size:0.88rem; opacity:0; transform:translateY(10px); transition:.25s; z-index:70;}
+  .toast.show{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-row">
+    <div class="brand">
+      <svg width="42" height="42" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="14" fill="#1B4D8C"/>
+        <path d="M15 70 L15 50 L30 38 L45 50 L45 70 Z" fill="#FAFAF8"/>
+        <path d="M50 70 L50 42 L68 28 L86 42 L86 70 Z" fill="#FAFAF8"/>
+        <rect x="58" y="50" width="6" height="8" fill="#1B4D8C"/>
+        <rect x="70" y="50" width="6" height="8" fill="#1B4D8C"/>
+        <rect x="22" y="56" width="6" height="8" fill="#1B4D8C"/>
+        <rect x="8" y="74" width="84" height="5" fill="#5BA82E"/>
+      </svg>
+      <div>
+        <div class="brand-name">Build Source Trading</div>
+        <div class="brand-tag">Finishing Materials</div>
+      </div>
+    </div>
+    <nav id="primaryNav">
+      <button data-page="home" class="active">Home</button>
+      <button data-page="about">About Us</button>
+      <button data-page="products">Products</button>
+      <button data-page="gallery">Gallery</button>
+      <button data-page="contact">Contact</button>
+      <button data-page="admin">Admin Demo</button>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <svg class="hero-slabs" viewBox="0 0 1180 420" preserveAspectRatio="none">
+      <rect x="0" y="40" width="1180" height="34" fill="#FFFFFF" opacity="0.06" transform="rotate(-2 590 57)"/>
+      <rect x="0" y="120" width="1180" height="34" fill="#FFFFFF" opacity="0.05" transform="rotate(-2 590 137)"/>
+      <rect x="0" y="200" width="1180" height="34" fill="#5BA82E" opacity="0.10" transform="rotate(-2 590 217)"/>
+      <rect x="0" y="280" width="1180" height="34" fill="#FFFFFF" opacity="0.05" transform="rotate(-2 590 297)"/>
+    </svg>
+    <div class="container">
+      <div class="hero-eyebrow">Construction &amp; Finishing Materials · Addis Ababa</div>
+      <h1>Built for Quality, <span>Delivered for You.</span></h1>
+      <p>Gypsum boards, ceiling systems, partitions, soundproofing and waterproofing — sourced right, priced fair, and delivered fast across Addis Ababa.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-accent" onclick="go('contact')">Request a Quote</button>
+        <button class="btn btn-ghost" style="border-color:#fff;color:#fff;" onclick="go('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item"><div class="num">8+</div><div class="lbl">Product Categories</div></div>
+        <div class="trust-item"><div class="num">Same-Week</div><div class="lbl">Delivery in Addis Ababa</div></div>
+        <div class="trust-item"><div class="num">Direct</div><div class="lbl">Competitive Pricing</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">What We Supply</div>
+        <h2>Material systems, organized the way you actually buy them</h2>
+        <p>Eight core categories covering ceilings, walls, sound, and moisture — each with real product detail, not vague catalog copy.</p>
+      </div>
+      <div class="cat-grid" id="homeCatGrid"></div>
+    </div>
+  </section>
+
+  <section class="bg-panel">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Why Build Source Trading</div>
+        <h2>Three things every contractor actually needs from a supplier</h2>
+      </div>
+      <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat-card"><div class="num">Quality</div><div class="lbl">Materials that pass inspection the first time</div></div>
+        <div class="stat-card" style="background:var(--green);"><div class="num">Speed</div><div class="lbl">Fast delivery so your site never waits</div></div>
+        <div class="stat-card"><div class="num">Price</div><div class="lbl">Direct sourcing keeps your margins healthy</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="text-align:center;">
+      <h2 style="margin-bottom:14px;">Ready to start your project?</h2>
+      <p style="color:#54607A; max-width:480px; margin:0 auto 28px;">Call us, message us on WhatsApp or Telegram, or send a quote request — whichever is fastest for you.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <button class="btn btn-primary" onclick="go('contact')">Get a Quote</button>
+        <a class="btn btn-accent" href="https://wa.me/251911388498" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="page-about">
+  <section style="padding-top:56px;">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">About Us</div>
+        <h2>A local supplier built around fast, dependable finishing materials</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p style="color:#3A4456; line-height:1.75; font-size:1.0rem; margin-bottom:18px;">Build Source Trading supplies construction and finishing materials to contractors, developers, and individual builders across Addis Ababa. We work directly with manufacturers and distributors so our customers get consistent quality at fair prices — without the delays that slow down a site.</p>
+          <p style="color:#3A4456; line-height:1.75; font-size:1.0rem;">From gypsum ceilings to soundproofing and waterproofing systems, we stock the categories that finishing work actually depends on, and we keep communication simple: call, WhatsApp, or Telegram — whatever's fastest for you.</p>
+        </div>
+        <ul class="value-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div><strong>Mission</strong> — Make quality finishing materials accessible and affordable for every builder in Addis Ababa.</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div><strong>Vision</strong> — Become the most trusted finishing-materials supplier in Ethiopia's construction sector.</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div><strong>Why choose us</strong> — Direct sourcing, fast delivery, and a team that answers the phone.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PRODUCTS ============ -->
+<div class="page" id="page-products">
+  <section style="padding-top:56px;">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Products &amp; Services</div>
+        <h2>Browse by category</h2>
+        <p>19 products across 8 categories — filter to find exactly what your project needs.</p>
+      </div>
+      <div class="filter-row" id="filterRow"></div>
+      <div class="prod-grid" id="prodGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ GALLERY ============ -->
+<div class="page" id="page-gallery">
+  <section style="padding-top:56px;">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Gallery</div>
+        <h2>Products, projects, and branding</h2>
+        <p>A look at our materials in place, our delivery branding, and completed work. (Sample illustrations — swap with your real project photography.)</p>
+      </div>
+      <div class="gal-grid" id="galGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="page-contact">
+  <section style="padding-top:56px;">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Contact</div>
+        <h2>Let's talk about your project</h2>
+        <p>Reach us by phone, WhatsApp, Telegram, or the form below — we usually reply within the same business day.</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+            <div><h4>Call us</h4><p><a class="link" href="tel:+251911388498">+251 911 388 498</a> &nbsp;·&nbsp; <a class="link" href="tel:+251901028789">+251 901 028 789</a></p></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
+            <div><h4>Email</h4><p><a class="link" href="mailto:buildsourcetrading@gmail.com">buildsourcetrading@gmail.com</a></p></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><h4>Location</h4><p>Addis Ababa, Ethiopia</p></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <div><h4>Chat directly</h4><p><a class="link" href="https://wa.me/251911388498" target="_blank" rel="noopener">WhatsApp</a> &nbsp;·&nbsp; <a class="link" href="https://t.me/buildsourcetrading" target="_blank" rel="noopener">Telegram</a></p></div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:center; margin-top:20px;">
+            <div class="qr-box">
+              <svg viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="#fff"/><g fill="#1A2433"><rect x="8" y="8" width="24" height="24"/><rect x="68" y="8" width="24" height="24"/><rect x="8" y="68" width="24" height="24"/><rect x="40" y="8" width="8" height="8"/><rect x="52" y="8" width="8" height="8"/><rect x="40" y="40" width="8" height="8"/><rect x="52" y="40" width="8" height="8"/><rect x="40" y="52" width="8" height="8"/><rect x="68" y="40" width="8" height="8"/><rect x="40" y="68" width="8" height="8"/><rect x="52" y="80" width="8" height="8"/><rect x="68" y="68" width="8" height="8"/><rect x="80" y="80" width="12" height="12"/></g></svg>
+            </div>
+            <p style="font-size:0.85rem; color:#5A6678; margin:0;">Scan to save our contact card directly to your phone.</p>
+          </div>
+        </div>
+        <div>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-field"><label for="cf-name">Full name</label><input id="cf-name" required placeholder="Your name"></div>
+            <div class="form-field"><label for="cf-phone">Phone number</label><input id="cf-phone" required placeholder="09xx xxx xxx"></div>
+            <div class="form-field"><label for="cf-cat">What do you need?</label>
+              <select id="cf-cat"><option>General Inquiry</option><option>Gypsum Board</option><option>Ceiling Systems</option><option>Partition Systems</option><option>Soundproof Systems</option><option>Waterproof Solutions</option><option>Aluminum Ceiling</option><option>Armstrong Ceiling</option><option>Cement Board</option></select>
+            </div>
+            <div class="form-field"><label for="cf-msg">Message</label><textarea id="cf-msg" rows="5" required placeholder="Tell us about your project or what you need a quote for"></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Message</button>
+          </form>
+          <div class="map-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5A6678" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Google Map embed placeholder — Addis Ababa, Ethiopia
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ADMIN DEMO ============ -->
+<div class="page" id="page-admin">
+  <section style="padding-top:56px; padding-bottom:90px;">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Admin Panel Preview</div>
+        <h2>What the CMS dashboard will look like</h2>
+        <p>Visual preview only — this is what you (or a developer) would see managing the real site once it's hosted with a working backend.</p>
+      </div>
+      <div class="admin-note">⚠ Demo only — buttons here don't save real data. The production admin panel will be a fully working WordPress dashboard once hosted.</div>
+      <div class="admin-shell">
+        <div class="admin-side">
+          <div class="a-logo">BST Admin</div>
+          <button class="active" onclick="adminTab(this,'overview')">Dashboard</button>
+          <button onclick="adminTab(this,'products')">Products</button>
+          <button onclick="adminTab(this,'media')">Media Library</button>
+          <button onclick="adminTab(this,'inquiries')">Inquiries</button>
+          <button onclick="adminTab(this,'settings')">Site Settings</button>
+        </div>
+        <div class="admin-main" id="adminMain"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rail">
+  <a class="rail-wa" href="https://wa.me/251911388498" target="_blank" rel="noopener" title="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.1-.5-.1-.2-.7-1.7-1-2.3-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.7 2.6 4.2 3.5 2.5 1 2.5.7 3 .6.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg>
+  </a>
+  <a class="rail-tg" href="https://t.me/buildsourcetrading" target="_blank" rel="noopener" title="Telegram">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 5.2c.2-1-.6-1.6-1.5-1.2L2.6 11c-1 .4-1 1 0 1.4l4.5 1.4 1.7 5.4c.2.6.5.7.9.4l2.6-2 4.7 3.5c.6.5 1.1.3 1.3-.5l3.6-15z"/></svg>
+  </a>
+  <a class="rail-call" href="tel:+251911388498" title="Call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4 style="color:#fff;">Build Source Trading</h4>
+        <p>Construction and finishing materials supplier in Addis Ababa, Ethiopia. Built for Quality, Delivered for You.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="go('about')">About Us</a></li>
+          <li><a href="#" onclick="go('products')">Products</a></li>
+          <li><a href="#" onclick="go('gallery')">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>+251 911 388 498</li>
+          <li>+251 901 028 789</li>
+          <li>buildsourcetrading@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Build Source Trading. All rights reserved.</span>
+      <span>Addis Ababa, Ethiopia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== Data =====
+const categories = [
+  {id:'gypsum', name:'Gypsum Board', desc:'Lightweight boards for ceilings and walls.'},
+  {id:'ceiling', name:'Ceiling Systems', desc:'Complete suspended ceiling solutions.'},
+  {id:'partition', name:'Partition Systems', desc:'Fast, clean interior wall partitions.'},
+  {id:'soundproof', name:'Soundproof Systems', desc:'Acoustic insulation for noise control.'},
+  {id:'waterproof', name:'Waterproof Solutions', desc:'Moisture barriers for roofs and walls.'},
+  {id:'aluminum', name:'Aluminum Ceiling', desc:'Durable, modern ceiling panels.'},
+  {id:'armstrong', name:'Armstrong Ceiling', desc:'Premium mineral fiber ceiling tiles.'},
+  {id:'cementboard', name:'Cement Board', desc:'Strong, moisture-resistant backer board.'},
+];
+
+const products = [
+  {n:'Standard Gypsum Board 12mm', c:'gypsum', d:'Smooth-finish board for standard ceiling and wall lining.'},
+  {n:'Moisture-Resistant Gypsum Board', c:'gypsum', d:'Treated core for kitchens, bathrooms, and damp areas.'},
+  {n:'Fire-Rated Gypsum Board', c:'gypsum', d:'Glass-fiber reinforced core for fire-rated partitions.'},
+  {n:'Suspended Grid Ceiling System', c:'ceiling', d:'Complete T-bar grid kit for false ceilings.'},
+  {n:'Drop Ceiling Tile Set', c:'ceiling', d:'Lightweight tiles for quick ceiling installs.'},
+  {n:'Metal Stud Partition Kit', c:'partition', d:'Steel framing system for interior partitions.'},
+  {n:'Glass Partition System', c:'partition', d:'Modern glazed partitions for offices.'},
+  {n:'Acoustic Insulation Panel', c:'soundproof', d:'Dense mineral wool panel for sound dampening.'},
+  {n:'Soundproof Wall Membrane', c:'soundproof', d:'Thin membrane layer to cut airborne noise.'},
+  {n:'Bitumen Waterproof Membrane', c:'waterproof', d:'Torch-applied membrane for flat roofs.'},
+  {n:'Liquid Waterproof Coating', c:'waterproof', d:'Brush-applied seal for walls and terraces.'},
+  {n:'Aluminum Strip Ceiling Panel', c:'aluminum', d:'Linear metal panels for commercial ceilings.'},
+  {n:'Aluminum Clip-in Ceiling Tile', c:'aluminum', d:'Easy-access tiles for offices and retail.'},
+  {n:'Armstrong Mineral Fiber Tile 60x60', c:'armstrong', d:'Standard import-grade acoustic ceiling tile.'},
+  {n:'Armstrong Perforated Tile', c:'armstrong', d:'Perforated finish for added sound absorption.'},
+  {n:'Cement Board 6mm', c:'cementboard', d:'Backer board for tiled and wet-area walls.'},
+  {n:'Cement Board Flooring Sheet', c:'cementboard', d:'Reinforced sheet for sub-flooring applications.'},
+  {n:'Cement Board Exterior Cladding', c:'cementboard', d:'Weather-resistant board for facades.'},
+  {n:'Galvanized Ceiling Channel', c:'ceiling', d:'Support channel for suspended ceiling grids.'},
+];
+
+function catIcon(c){
+  const icons = {
+    gypsum:`<rect x="10" y="20" width="80" height="14" rx="3" fill="#1B4D8C"/><rect x="10" y="40" width="80" height="14" rx="3" fill="#5BA82E"/><rect x="10" y="60" width="80" height="14" rx="3" fill="#1B4D8C" opacity=".5"/>`,
+    ceiling:`<rect x="8" y="20" width="84" height="60" fill="none" stroke="#1B4D8C" stroke-width="3"/><line x1="8" y1="40" x2="92" y2="40" stroke="#1B4D8C" stroke-width="2"/><line x1="8" y1="60" x2="92" y2="60" stroke="#1B4D8C" stroke-width="2"/><line x1="33" y1="20" x2="33" y2="80" stroke="#1B4D8C" stroke-width="2"/><line x1="58" y1="20" x2="58" y2="80" stroke="#5BA82E" stroke-width="2"/><line x1="83" y1="20" x2="83" y2="80" stroke="#1B4D8C" stroke-width="2"/>`,
+    partition:`<rect x="20" y="15" width="14" height="70" fill="#1B4D8C"/><rect x="44" y="15" width="14" height="70" fill="#5BA82E"/><rect x="68" y="15" width="14" height="70" fill="#1B4D8C" opacity=".5"/>`,
+    soundproof:`<circle cx="50" cy="50" r="8" fill="#1B4D8C"/><circle cx="50" cy="50" r="20" fill="none" stroke="#5BA82E" stroke-width="4"/><circle cx="50" cy="50" r="32" fill="none" stroke="#1B4D8C" stroke-width="3" opacity=".5"/>`,
+    waterproof:`<path d="M50 15 C30 45 25 60 25 70 a25 25 0 0050 0c0-10-5-25-25-55Z" fill="#1B4D8C"/><path d="M50 35 C40 52 38 60 38 67 a12 12 0 0024 0c0-7-2-15-12-32Z" fill="#5BA82E"/>`,
+    aluminum:`<rect x="10" y="25" width="80" height="12" fill="#1B4D8C"/><rect x="10" y="44" width="80" height="12" fill="#9DB6D6"/><rect x="10" y="63" width="80" height="12" fill="#1B4D8C"/>`,
+    armstrong:`<rect x="14" y="14" width="32" height="32" fill="#1B4D8C"/><rect x="54" y="14" width="32" height="32" fill="#5BA82E"/><rect x="14" y="54" width="32" height="32" fill="#5BA82E"/><rect x="54" y="54" width="32" height="32" fill="#1B4D8C"/>`,
+    cementboard:`<rect x="12" y="20" width="76" height="60" fill="#7C8A9C"/><circle cx="24" cy="32" r="2.5" fill="#1A2433"/><circle cx="44" cy="32" r="2.5" fill="#1A2433"/><circle cx="64" cy="32" r="2.5" fill="#1A2433"/><circle cx="24" cy="68" r="2.5" fill="#1A2433"/><circle cx="64" cy="68" r="2.5" fill="#1A2433"/><rect x="12" y="20" width="76" height="60" fill="none" stroke="#5BA82E" stroke-width="3"/>`,
+  };
+  return `<svg viewBox="0 0 100 100">${icons[c]||''}</svg>`;
+}
+
+// ===== Render: home categories =====
+const homeCatGrid = document.getElementById('homeCatGrid');
+categories.forEach(c=>{
+  const div = document.createElement('div');
+  div.className='cat-card';
+  div.onclick=()=>{ go('products'); setTimeout(()=>filterTo(c.id),0); };
+  div.innerHTML = `<div class="cat-icon">${catIcon(c.id)}</div><h3>${c.name}</h3><p>${c.desc}</p>`;
+  homeCatGrid.appendChild(div);
+});
+
+// ===== Render: product filters + grid =====
+const filterRow = document.getElementById('filterRow');
+const prodGrid = document.getElementById('prodGrid');
+let activeFilter = 'all';
+
+function buildFilters(){
+  filterRow.innerHTML='';
+  const allChip = mkChip('all','All Products');
+  filterRow.appendChild(allChip);
+  categories.forEach(c=> filterRow.appendChild(mkChip(c.id, c.name)));
+}
+function mkChip(id,label){
+  const b=document.createElement('button');
+  b.className='chip'+(id===activeFilter?' active':'');
+  b.textContent=label;
+  b.onclick=()=>filterTo(id);
+  return b;
+}
+function filterTo(id){
+  activeFilter=id;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  buildFilters();
+  renderProducts();
+}
+function renderProducts(){
+  prodGrid.innerHTML='';
+  const list = activeFilter==='all' ? products : products.filter(p=>p.c===activeFilter);
+  list.forEach(p=>{
+    const cat = categories.find(c=>c.id===p.c);
+    const card=document.createElement('div');
+    card.className='prod-card';
+    card.innerHTML = `<div class="prod-thumb">${catIcon(p.c)}</div>
+      <div class="prod-body">
+        <div class="prod-cat">${cat.name}</div>
+        <h4>${p.n}</h4>
+        <p>${p.d}</p>
+      </div>`;
+    prodGrid.appendChild(card);
+  });
+}
+buildFilters(); renderProducts();
+
+// ===== Render: gallery =====
+const galGrid = document.getElementById('galGrid');
+const galItems = [...categories.map(c=>c.id), 'gypsum','ceiling','partition','soundproof'];
+galItems.forEach((c)=>{
+  const item=document.createElement('div');
+  item.className='gal-item';
+  item.innerHTML=catIcon(c);
+  galGrid.appendChild(item);
+});
+
+// ===== Navigation =====
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active', b.dataset.page===page));
+  document.getElementById('primaryNav').classList.remove('open');
+  window.scrollTo({top:0,behavior:'instant'});
+  if(page==='admin' && !document.getElementById('adminMain').innerHTML) adminTab(document.querySelector('.admin-side button'),'overview');
+}
+document.querySelectorAll('nav button[data-page]').forEach(b=>{
+  b.onclick=()=>go(b.dataset.page);
+});
+document.getElementById('navToggle').onclick=()=>document.getElementById('primaryNav').classList.toggle('open');
+
+// ===== Contact form (frontend only) =====
+function handleSubmit(e){
+  e.preventDefault();
+  showToast('Message received — we\\'ll get back to you shortly. (Demo only — connect a backend to actually receive this.)');
+  document.getElementById('contactForm').reset();
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3800);
+}
+
+// ===== Admin demo =====
+function adminTab(btn, tab){
+  document.querySelectorAll('.admin-side button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const main = document.getElementById('adminMain');
+  if(tab==='overview'){
+    main.innerHTML = `<h3>Dashboard</h3><div class="sub">Overview of your site content</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="n">19</div><div class="l">Products</div></div>
+      <div class="kpi"><div class="n">8</div><div class="l">Categories</div></div>
+      <div class="kpi"><div class="n">12</div><div class="l">Gallery Images</div></div>
+      <div class="kpi"><div class="n">3</div><div class="l">New Inquiries</div></div>
+    </div>
+    <p style="font-size:0.88rem; color:#5A6678;">This is where you'll see site activity at a glance once the real admin panel is connected to a database.</p>`;
+  } else if(tab==='products'){
+    let rows = products.slice(0,8).map(p=>`<tr><td>${p.n}</td><td>${categories.find(c=>c.id===p.c).name}</td><td><span class="badge badge-on">Visible</span></td><td><button class="btn btn-sm btn-ghost">Edit</button></td></tr>`).join('');
+    main.innerHTML = `<h3>Products</h3><div class="sub">Add, edit, or hide products shown on the site</div>
+    <div style="margin-bottom:14px;"><button class="btn btn-sm btn-accent" onclick="showToast('Demo only — this would open a form to add a new product.')">+ Add Product</button></div>
+    <table class="admin-table"><thead><tr><th>Name</th><th>Category</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+  } else if(tab==='media'){
+    main.innerHTML = `<h3>Media Library</h3><div class="sub">Upload and manage product and gallery images</div>
+    <div style="border:2px dashed var(--line); border-radius:8px; padding:40px; text-align:center; color:#5A6678; font-size:0.88rem;" onclick="showToast('Demo only — connect a backend to actually store uploads.')">
+    Click or drag to upload images</div>`;
+  } else if(tab==='inquiries'){
+    main.innerHTML = `<h3>Inquiries</h3><div class="sub">Messages submitted through the contact form</div>
+    <table class="admin-table"><thead><tr><th>Name</th><th>Phone</th><th>Category</th><th>Status</th></tr></thead><tbody>
+    <tr><td>Abel T.</td><td>0911 22 33 44</td><td>Gypsum Board</td><td><span class="badge badge-off">New</span></td></tr>
+    <tr><td>Sara M.</td><td>0922 55 66 77</td><td>Waterproof Solutions</td><td><span class="badge badge-on">Replied</span></td></tr>
+    </tbody></table>`;
+  } else if(tab==='settings'){
+    main.innerHTML = `<h3>Site Settings</h3><div class="sub">Update contact details shown across the site</div>
+    <div class="form-field"><label>Phone 1</label><input value="+251 911 388 498"></div>
+    <div class="form-field"><label>Phone 2</label><input value="+251 901 028 789"></div>
+    <div class="form-field"><label>Email</label><input value="buildsourcetrading@gmail.com"></div>
+    <button class="btn btn-sm btn-primary" onclick="showToast('Demo only — settings would save to the database.')">Save Changes</button>`;
+  }
+}
+</script>
+</body>
+</html>
